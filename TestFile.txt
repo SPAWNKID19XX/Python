@@ -1,3 +1,3 @@
-"Hello, it is my first time when I try use CMD" 
+Hello, it is my first time when I try use CMD!! 
 Let check what will happend if i will change something here.
-"Boris Isac Boris" 
+Boris Isac Boris
