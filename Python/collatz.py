@@ -1,11 +1,20 @@
-def collatz(number):
-    if number%2 ==0:
-        print(number/2)
-    else:
-        print(3*number+1)
-    return number
+from ast import Try
 
-res = 0
-num = int(input('insert a number: '))
-collatz(num)
-print(collatz(num))
+
+def collatz(number):
+    if number%2 == 0:
+        res = number / 2
+    else:
+        res = 3 * number + 1
+    return res
+
+num = 0
+while num < 2 or num > 10:
+    try:
+        num = int(input('Insert a number between 2 to 10: '))
+    except:
+        print('Error, Invalid argument, must be Integer Number')
+
+while num != 1:
+    num = int(collatz(num))
+    print(num)
