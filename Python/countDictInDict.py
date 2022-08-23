@@ -1,10 +1,8 @@
-import pprint
-
 allGuess = {
     'Aaron' : {'Apple' : 3, 'Orange' : 3, 'Banana' : 3},
-    'Emily' : {'Apple' : 3, 'juice' : 2, 'Bun' : 5},
-    'Boris' : {'Bun' : 5, 'Banana' : 3, 'Candies' : 10},
-    'Natasha' : {'Candies' : 10, 'Apple' : 3, 'juice' : 2, 'Bun' : 5, 'Candies' : 10}
+    'Emily' : {'Apple' : 4, 'juice' : 2, 'Bun' : 5},
+    'Boris' : {'Bun' : 15, 'Banana' : 2, 'Candies' : 10},
+    'Natasha' : {'Apple' : 1, 'juice' : 1, 'Bun' : 7, 'Candies' : 10}
 }
 productItems = {}
 totalProductList = {}
@@ -25,8 +23,4 @@ def countProducts(guess):
                 productItems[key] += guess[listAllGuess[i]][key] 
     return productItems
     
-    
-                
-
-
 print(countProducts(allGuess))

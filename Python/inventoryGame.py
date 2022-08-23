@@ -1,0 +1,1 @@
+inventory = {'Arrow' : 12, 'Rope': 1, 'Torch': 6, 'GoldCoin': 42,'Knife': 1}

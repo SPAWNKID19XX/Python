@@ -30,19 +30,25 @@ def printBoard(board):
     print('--+--+--+--+--+--+--+--+')
 
 #Variables
-countTurn = 0
-while True:
-    if countTurn%2 == 0:
-        printBoard(boardField)
-        inicialPossition = input('WHITE TURN. Insert inicial position')
-        finalPosition = input('WHITE TURN. Insert final position')
-    else:
-        printBoard(boardField)
-        inicialPossition = input('BLACK TURN. Insert inicial position')
-        finalPosition = input('BLACK TURN. Insert final position')
-    countTurn += 1
 
+def turns():
+    countTurn = 0
+    while True:
+        if countTurn%2 == 0:
+            printBoard(boardField)
+            initialPossition = input('WHITE TURN. Insert inicial position: ')
+            checkingCorectPossition(initialPossition)
+            finalPossition = input('WHITE TURN. Insert final position: ')
+            checkingCorectPossition(finalPossition)
+        else:
+            printBoard(boardField)
+            initialPossition = input('BLACK TURN. Insert inicial position: ')
+            checkingCorectPossition(initialPossition)
+            finalPossition = input('BLACK TURN. Insert final position: ')
+            checkingCorectPossition(finalPossition)
+        countTurn += 1  
 
+def checkingCorectPossition(pos):
+    print('Your Position ' + pos)
 
-
-
+turns()
