@@ -30,5 +30,4 @@ def isValidChassBoard(board):
                 return False
     return True
 
-res = isValidChassBoard(boardField)
-print(res)
+print(isValidChassBoard(boardField))

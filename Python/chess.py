@@ -29,26 +29,38 @@ def printBoard(board):
     print(board['a8'] + '|' + board['b8'] + '|' + board['c8'] + '|' + board['d8'] + '|' + board['e8'] + '|' + board['f8'] + '|' + board['g8'] + '|' + board['h8'] + '|' + board['coordinationNumbers8'])
     print('--+--+--+--+--+--+--+--+')
 
-#Variables
-
 def turns():
+    initialPossition = 'hello'
+    finalPossition = 'hello'
     countTurn = 0
     while True:
         if countTurn%2 == 0:
             printBoard(boardField)
-            initialPossition = input('WHITE TURN. Insert inicial position: ')
-            checkingCorectPossition(initialPossition)
-            finalPossition = input('WHITE TURN. Insert final position: ')
-            checkingCorectPossition(finalPossition)
+            while len(initialPossition) != 2:
+                initialPossition = input('WHITE TURN. Insert inicial position: ')
+                confirmPossition(initialPossition)
+                while len(finalPossition) != 2:
+                    finalPossition = input('WHITE TURN. Insert final position: ')
+                    confirmPossition(finalPossition)        
         else:
             printBoard(boardField)
-            initialPossition = input('BLACK TURN. Insert inicial position: ')
-            checkingCorectPossition(initialPossition)
-            finalPossition = input('BLACK TURN. Insert final position: ')
-            checkingCorectPossition(finalPossition)
+            while len(initialPossition) != 2:
+                initialPossition = input('BLACK TURN. Insert inicial position: ')
+                confirmPossition(initialPossition)
+                while len(finalPossition) != 2:
+                    finalPossition = input('BLACK TURN. Insert final position: ')
+                    confirmPossition(finalPossition)        
         countTurn += 1  
 
 def checkingCorectPossition(pos):
     print('Your Position ' + pos)
+
+def confirmPossition(possition):
+    #first we have to confirm than insert possition is betreen a..h and 1..8
+    tableASCII = {'a' : 97, 'b' : 98, 'c' : 99, 'd' : 100, 'e' : 101, 'f' : 102, 'g' : 103, 'h' : 104}
+    if possition[0] in tableASCII:
+        print('GOOD POSITION')
+    else:
+        print('BAD POSITION')
 
 turns()

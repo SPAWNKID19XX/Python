@@ -1,5 +1,3 @@
-from ast import Not
-
 name = ''
 
 while not name:
