@@ -1,3 +1,6 @@
+from ntpath import join
+import pprint
+
 boardField = {'coordLa' : ' a', 'coordLb' : ' b', 'coordLc' : ' c', 'coordLd' : ' d', 'coordLe' : ' e', 'coordLf' : ' f', 'coordLg' : ' g', 'coordLh' : ' h',
     'a1' : 'BR', 'b1' : 'BH', 'c1' : 'BB', 'd1' : 'BQ', 'e1' : 'BK', 'f1' : 'BB', 'g1' : 'BH', 'h1' : 'BR', 'coordinationNumbers1' : '1',
     'a2' : 'BP', 'b2' : 'BP', 'c2' : 'BP', 'd2' : 'BP', 'e2' : 'BP', 'f2' : 'BP', 'g2' : 'BP', 'h2' : 'BP', 'coordinationNumbers2' : '2',
@@ -29,26 +32,82 @@ def printBoard(board):
     print(board['a8'] + '|' + board['b8'] + '|' + board['c8'] + '|' + board['d8'] + '|' + board['e8'] + '|' + board['f8'] + '|' + board['g8'] + '|' + board['h8'] + '|' + board['coordinationNumbers8'])
     print('--+--+--+--+--+--+--+--+')
 
-#Variables
+tableAsciiLetter = {'a' : 97, 'b' : 98, 'c' : 99, 'd' : 100, 'e' : 101, 'f' : 102, 'g' : 103, 'h' : 104}
+tableAsciiNumber = ['1', '2', '3', '4', '5', '6' ,'7', '8']
+
+def printASCII():
+    for i in range(97, 105):
+        print(chr(i) + ' : ' + str(i))
+
+def autoUnitTest(possitionLetter, possitionNumber):#Validate introducing possition(a1:ok, a0:NotOk)
+    for l in range(97, 106):
+        for i in range(0, 10):
+            res = list(chr(l))
+            res.append(str(i))
+            resFinal = ''.join(res)
+            if resFinal[0] in tableAsciiLetter and resFinal[1] in tableAsciiNumber:
+                print(resFinal + ' OK')
+            else:
+                print(resFinal + ' not OK')
+
+def insertPossition(whiteBlackTurn, initialFinishPossition): #Function for inserting a possitions from user
+    coordinateCell = input(whiteBlackTurn + ' , insert ' + initialFinishPossition + ' coordination: ')
+    return str(coordinateCell)
+    
+def correctFormat(input):
+    if len(input) == 2:
+        if input[0] in tableAsciiLetter:
+            if input[1] in tableAsciiNumber:
+                return True
+    else:
+        return False
+
+def checkFigure(turn, coordinateCell):
+    if turn[0] == boardField[coordinateCell][0]:
+        return True
+    else:
+        return False
+
+def move(coordinates, board):
+    fromPoint = coordinates['initial']
+    figure = board[fromPoint]
+    board[fromPoint] = '  ' 
+    toPoint = coordinates['final']
+    board[toPoint] = figure
+
+def validationInput(whiteBlackTurn, initialFinishPossition):
+    format = False
+    figure = False    
+    if initialFinishPossition == 'initial':
+        while (format == False or figure == False):
+            inputCoordinates = insertPossition(whiteBlackTurn, initialFinishPossition)
+            format = correctFormat(inputCoordinates)
+            figure = checkFigure(whiteBlackTurn, inputCoordinates)
+    else:
+        inputCoordinates = insertPossition(whiteBlackTurn, initialFinishPossition)
+        format = correctFormat(inputCoordinates)
+    return inputCoordinates
 
 def turns():
     countTurn = 0
+    turnCoordinate = {}
     while True:
-        if countTurn%2 == 0:
+        if countTurn % 2 == 0:
+            turn = 'White Player'
+            firstLast = 'initial'
             printBoard(boardField)
-            initialPossition = input('WHITE TURN. Insert inicial position: ')
-            checkingCorectPossition(initialPossition)
-            finalPossition = input('WHITE TURN. Insert final position: ')
-            checkingCorectPossition(finalPossition)
+            turnCoordinate[firstLast] = validationInput(turn, firstLast)        
+            firstLast = 'final'
+            turnCoordinate[firstLast] = validationInput(turn, firstLast)
+            move(turnCoordinate, boardField)
         else:
+            turn = 'Black Player'
+            firstLast = 'initial'
             printBoard(boardField)
-            initialPossition = input('BLACK TURN. Insert inicial position: ')
-            checkingCorectPossition(initialPossition)
-            finalPossition = input('BLACK TURN. Insert final position: ')
-            checkingCorectPossition(finalPossition)
-        countTurn += 1  
-
-def checkingCorectPossition(pos):
-    print('Your Position ' + pos)
+            turnCoordinate[firstLast] = validationInput(turn, firstLast)            
+            firstLast = 'final'
+            turnCoordinate[firstLast] = validationInput(turn, firstLast)
+            move(turnCoordinate, boardField)
+        countTurn = countTurn + 1
 
 turns()
