@@ -5,17 +5,8 @@
 msg = 'My number is 096-469-6149, my wife\'s number is 096-469-6179.Call me as soon, as it is possibol'
 #inputText = input('Insert American phone Number: ')
 
-
-def searchNumber(text):
-    for i in range(len(text)):
-        phoneNumber = text[i:i +12]
-        if checkingIfAmericanPhoneNumber(phoneNumber):
-            print('yesss')
-
-
 def checkingIfAmericanPhoneNumber(text):
     #checking number of simbols in text
-    print(len(text))
     if len(text) != 12:
         return False
     else:
@@ -34,9 +25,15 @@ def checkingIfAmericanPhoneNumber(text):
                 return False
         return True
 
-def answerTF(answer):#return true if is or False if not American number
-    print(answer)
-    if (answer == True):
-        print('Yes, is American number')
-    else:
-        print('No, isn\'t American number')
+def findNumbers(text):
+    numberList = []
+    #try to find and append to list all numbers
+    for i in range(len(text)):
+        text12Simbols = text[i : i+12]
+        if (checkingIfAmericanPhoneNumber(text12Simbols)):
+            numberList.append(text12Simbols)
+    #print a list in table
+    for i in range(len(numberList)):
+        print(str(i+1) + ' Number is ' + numberList[i])
+
+findNumbers(msg)
