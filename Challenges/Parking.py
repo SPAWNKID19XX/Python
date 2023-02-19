@@ -70,12 +70,24 @@ class Vehicle:
     def totalPrice(self):
         if self.vip == True: #Vip
             return self.spandTime() * self.price
+
         if self.moto == True: #Moto
-            return self.spandTime() * self.price
+            if self.spandTime() >= 180:
+                return (self.spandTime() * self.price) * 2
+            else:
+                return self.spandTime() * self.price
+
         if self.handiCap == True: #handiCap
-            return self.spandTime() * self.price
+            if self.spandTime() >= 180:
+                return (self.spandTime() * self.price) * 2
+            else:
+                return self.spandTime() * self.price
+
         if ((self.vip==False) and (self.moto == False) and (self.handiCap == False)):
-            return self.spandTime() * self.price
+            if self.spandTime() >= 180:
+                return (self.spandTime() * self.price) * 2
+            else:
+                return self.spandTime() * self.price
 
 class VipCostomers(Vehicle): #Vip Cars
     def __init__(self, name, idLicence, plate,enterDate, exitDate, price = 0.13,vip = True, moto = False, handiCap = False ):
@@ -118,34 +130,40 @@ def createRandomUser(): #function for emulate ParkingCostumers
     return name,id,plt,entDate,exDate
 
 floor = [] #5 floors
-places = [] #40 places for a flor 25simpleCars, 10Moto, 3Vip, 2HandiCap
+
 freeForFloor = [] #conter free places[simpleCar, Moto, Vip, HandiCap]
 
 for flr in range(5):
     freePlaces = [0, 0, 0, 0]  # conter free places[simpleCar, Moto, Vip, HandiCap]
     for plc in range(25): #Appending carrs
-        if randField() == 1:
+        places = []  # 40 places for a flor 25simpleCars, 10Moto, 3Vip, 2HandiCap
+        a = randField()
+        if a == 1:
             castomer = Vehicle(createRandomUser()[0], createRandomUser()[1], createRandomUser()[2],createRandomUser()[3], createRandomUser()[4])
             places.append(castomer)
         else:
             places.append(0)
             freePlaces[0] += 1
+
     for plc in range(10):#Appending Moto
-        if randField() == 1:
+        a = randField()
+        if a == 1:
             costomer = MotoCostomers(createRandomUser()[0], createRandomUser()[1], createRandomUser()[2],createRandomUser()[3], createRandomUser()[4])
             places.append(costomer)
         else:
             places.append(0)
             freePlaces[1] += 1
     for plc in range(3):#Appending Vip
-        if randField() == 1:
+        a = randField()
+        if a == 1:
             costomer = VipCostomers(createRandomUser()[0], createRandomUser()[1], createRandomUser()[2],createRandomUser()[3], createRandomUser()[4])
             places.append(costomer)
         else:
             places.append(0)
             freePlaces[2] += 1
     for plc in range(2):  # Appending HandiCap
-        if randField() == 1:
+        a = randField()
+        if a == 1:
             costomer = HandiCapCostomers(createRandomUser()[0], createRandomUser()[1], createRandomUser()[2],createRandomUser()[3], createRandomUser()[4])
             places.append(costomer)
         else:
@@ -155,11 +173,12 @@ for flr in range(5):
     freeForFloor.append(freePlaces)
 
 print("Parking has been emulated!")
-
 for flr in floor:
     for obj in flr:
         if obj != 0:
             print("{} TotalPrice:{:5.3}€".format(obj, obj.totalPrice()))
+
+
 
 #printing free plases information
 print("{:20}{:10}{:10}{:10}{:10}".format("Empty places:", "Car", "Moto", "Vip", "HCap"))
