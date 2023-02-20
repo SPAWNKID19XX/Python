@@ -7,15 +7,19 @@ class Vehicle:
     def __str__(self):
         return self.__color, self.__wheels
 
-    def setColor(self, value):
-        self.__color = value
-    def getColor(self):
+    @property
+    def color(self):
         return self.__color
+    @color.setter
+    def color(self, value):
+        self.__color = value
 
-    def setWheels(self, value):
-        self.__wheels = value
-    def getWheels(self):
+    @property
+    def wheels(self):
         return self.__wheels
+    @wheels.setter
+    def wheels(self, value):
+        self.__wheels = value
 
 class Car(Vehicle):
     __brand = ""
@@ -23,25 +27,34 @@ class Car(Vehicle):
     __spead = 0
     __engine = 1.0
 
-    def setSpeed(self, value):
-        self.__spead = value
-    def getSpeed(self):
+    @property
+    def speed(self):
         return self.__spead
+    @speed.setter
+    def speed(self, value):
+        self.__spead = value
 
-    def setEngine(self, value):
-        self.__engine = value
-    def getEngine(self):
+    @property
+    def engine(self):
         return self.__engine
+    @engine.setter
+    def engine(self, value):
+        self.__engine = value
 
-    def setBrand(self, value):
-        self.__brand = value
-    def getBrand(self):
+    @property
+    def brand(self):
         return self.__brand
+    @brand.setter
+    def brand(self, value):
+        self.__brand = value
 
-    def setModel(self, value):
-        self.__model = value
-    def getmodel(self):
+    @property
+    def model(self):
         return self.__model
+    @model.setter
+    def model(self, value):
+        self.__model = value
+
 
     def __rides__(self):
         if self.__spead > 0 and self.__spead <= 50:
@@ -52,13 +65,13 @@ class Car(Vehicle):
             return "Stays, {}km/h".format(self.__spead)
 
     def __str__(self):
-        return  """\n
+        return  """
     Brand: {} 
     Model: {}
     Color: {}
     Engine: {}
     NumWheels: {}
-    Methode: {}""".format(self.__brand, self.__model, self.getColor(), self.__engine, self.getWheels(), self.__rides__())
+    Methode: {}""".format(self.__brand, self.__model, self.color, self.__engine, self.wheels, self.__rides__())
 
 carro1 = Car()
 carro2 = Car()
@@ -67,16 +80,16 @@ print("Before edit Information")
 print(carro1.__str__())
 
 print("After edit Information")
-carro1.setSpeed(55)
-carro1.setBrand("BMW")
-carro1.setModel(318)
-carro1.setEngine(2.0)
+carro1.speed = 55
+carro1.brand = "BMW"
+carro1.model = 318
+carro1.engine = 2.0
 print(carro1.__str__())
 
 
-carro2.setSpeed(49)
-carro2.setBrand("Renault")
-carro2.setModel("Clio")
-carro2.setEngine(1.3)
-carro2.setColor("Black")
+carro2.speed = 49
+carro2.brand ="Renault"
+carro2.model ="Clio"
+carro2.engine = 1.3
+carro2.color = "Black"
 print(carro2.__str__())

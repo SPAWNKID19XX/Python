@@ -11,27 +11,40 @@ class Product:
         self.__price = price
         print(self.__name, "has been created!")
 
-    def setId(self, value):
+    @property
+    def id(self):
+        return self.__id
+
+    @id.setter
+    def id(self, value):
         self.__id = value
-    def getId(self):
-        print(self.__id)
 
-    def setName(self, value):
+    @property
+    def name(self):
+        return self.__name
+
+    @name.setter
+    def name(self, value):
         self.__name = value
-    def getName(self):
-        print(self.__name)
 
-    def setType(self, value):
+    @property
+    def type(self):
+        return self.__type
+
+    @type.setter
+    def type(self, value):
         self.__type = value
-    def getType(self):
-        print(self.__type)
 
-    def setPrice(self, value):
+    @property
+    def price(self):
+        return self.__price
+
+    @price.setter
+    def price(self, value):
         self.__price = value
-    def getPrice(self):
-        print(self.__price)
 
-    def __str__(self):
+
+def __str__(self):
         print("{:<3}{:10}{:10}{:10}".format(self.__id, self.__name, self.__type, self.__price))
 
 #Auto creating of products
@@ -51,7 +64,7 @@ print("\nBefore changes")
 for obj in prodList:
     obj.__str__()
 
-prodList[1].setPrice(2.99)
+prodList[1].price = 2.99
 
 #After changes
 print("\nAfter changes")

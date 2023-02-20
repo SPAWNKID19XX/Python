@@ -11,25 +11,37 @@ class Product:
         self.__price = price
         print(self.__name, "has been created!")
 
-    def setId(self, value):
-        self.__id = value
-    def getId(self):
+    @property
+    def id(self):
         return self.__id
 
-    def setName(self, value):
-        self.__name = value
-    def getName(self):
+    @id.setter
+    def id(self, value):
+        self.__id = value
+
+    @property
+    def name(self):
         return self.__name
 
-    def setType(self, value):
-        self.__type = value
-    def getType(self):
+    @name.setter
+    def name(self, value):
+        self.__name = value
+
+    @property
+    def type(self):
         return self.__type
 
-    def setPrice(self, value):
-        self.__price = value
-    def getPrice(self):
+    @type.setter
+    def type(self, value):
+        self.__type = value
+
+    @property
+    def price(self):
         return self.__price
+
+    @price.setter
+    def price(self, value):
+        self.__price = value
 
     def __str__(self):
         return  "{:<3}{:10}{:10}{:10}".format(self.__id, self.__name, self.__type, self.__price)
@@ -53,8 +65,8 @@ for obj in prodList:
 
 searchById = int(input("Product ID?: "))
 for obj in prodList:
-    if obj.getId() == searchById:
+    if obj.id == searchById:
         print(obj.__str__())
         quantety = int(input("Haw many pieces do you wont? "))
-        priceFinal = quantety * obj.getPrice()
-        print("Final price for {} {} is {:3.7}".format(quantety, obj.getName(), priceFinal))
+        priceFinal = quantety * obj.price
+        print("Final price for {} {} is {:3.7}".format(quantety, obj.name, priceFinal))
