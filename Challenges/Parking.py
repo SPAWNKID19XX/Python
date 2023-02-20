@@ -18,45 +18,68 @@ class Vehicle:
         self.handiCap = handiCap
 
 #Atrebutes's Getters and Setters
-    def setName(self, value):
-        self.name = value
-    def getName(self):
+    @property
+    def infoName(self):
         return self.name
+    @infoName.setter
+    def infoName(self, value):
+        self.name = value
 
-    def setIdLicence(self, value):
-        self.idLicence = value
-    def getIdLicence(self):
+    @property
+    def infoIdLicence(self):
         return self.idLicence
+    @infoIdLicence.setter
+    def infoIdLicence(self, value):
+        self.idLicence = value
 
-    def setIsHandicao(self, value):
-        self.handiCap = value
-    def getIsHandicap(self):
+    @property
+    def infoIsHandicap(self):
         return self.handiCap
+    @infoIsHandicap.setter
+    def infoIsHandicap(self, value):
+        self.handiCap = value
 
-    def setIsMoto(self, value):
-        self.moto = value
-    def getIsMoto(self):
+    @property
+    def infoIsMoto(self):
         return self.moto
+    @infoIsMoto.setter
+    def infoIsMoto(self, value):
+        self.moto = value
 
-    def setIsVip(self, value):
-        self.vip = value
-    def getIsVip(self):
+    @property
+    def infoIsVip(self):
         return self.vip
+    @infoIsVip.setter
+    def infoIsVip(self, value):
+        self.vip = value
 
-    def setPlate(self, value):
-        self.plate = value
-    def getPlate(self):
+    @property
+    def infoPlate(self):
         return self.plate
+    @infoPlate.setter
+    def infoPlate(self, value):
+        self.plate = value
 
-    def setEnterDate(self, value):
-        self.enterDate = value
-    def getEnterDate(self):
+    @property
+    def infoEnterDate(self):
         return self.enterDate
+    @infoEnterDate.setter
+    def infoEnterDate(self, value):
+        self.enterDate = value
 
-    def setPrice(self, value):
-        self.price = value
-    def getPrice(self):
+    @property
+    def infoExitData(self):
+        return self.exitDate
+    @infoExitData.setter
+    def infoExitData(self, value):
+        self.exitDate = value
+
+    @property
+    def infoPrice(self):
         return self.price
+    @infoPrice.setter
+    def infoPrice(self, value):
+        self.price = value
 #finish Atributes's Getters and Setters
 
     def __str__(self):#toString
