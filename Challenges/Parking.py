@@ -1,8 +1,9 @@
 import random
-"""Class Vehicle will set and get All information about a Car.
-Vehicles contain Atributs ---> name, idLicence, handiCap(isHandiCap?), moto(isMoto?:Moto:Car), vip(isVip), plate,enterDate, exitDate
-Vehicles contain Methods ---> Getters and Setters for atributes, spandTime(exitTime-enterTime), totalPrice(spendTime*value(value depen of pricelist))
-
+"""
+The program is designed for a 5-floors car parking.  
+On each floor there are places for 25 cars, 10 motorcycles, 3 VIP's and 2 handiCap places.  
+The program should show the nearest empty spaces for each class,  
+the final price including the fine if the vehicle is parked for more than 180 minutes
 """
 class Vehicle:
     #Initialization
@@ -17,7 +18,7 @@ class Vehicle:
         self.moto = moto
         self.handiCap = handiCap
 
-#Atrebutes's Getters and Setters
+#Atributes's Getters and Setters
     @property
     def infoName(self):
         return self.name
@@ -112,7 +113,7 @@ class Vehicle:
             else:
                 return self.spandTime() * self.price
 
-class VipCostomers(Vehicle): #Vip Cars
+class VipCustomers(Vehicle): #Vip Cars
     def __init__(self, name, idLicence, plate,enterDate, exitDate, price = 0.13,vip = True, moto = False, handiCap = False ):
         super().__init__(name,idLicence,plate,enterDate,exitDate)
         self.vip = vip
@@ -120,7 +121,7 @@ class VipCostomers(Vehicle): #Vip Cars
         self.moto = moto
         self.price = price
 
-class HandiCapCostomers(Vehicle): #HandiCap
+class HandiCapCustomers(Vehicle): #HandiCap
     def __init__(self, name, idLicence, plate, enterDate, exitDate, price=0.10, vip=False, moto=False,handiCap=True):
         super().__init__(name, idLicence, plate, enterDate, exitDate)
         self.vip = vip
@@ -128,7 +129,7 @@ class HandiCapCostomers(Vehicle): #HandiCap
         self.moto = moto
         self.price = price
 
-class MotoCostomers(Vehicle): #moto
+class MotoCustomers(Vehicle): #moto
     def __init__(self, name, idLicence, plate,enterDate, exitDate, price = 0.05,vip = True, moto = False, handiCap = False ):
         super().__init__(name,idLicence,plate,enterDate,exitDate)
         self.vip = vip
@@ -136,12 +137,15 @@ class MotoCostomers(Vehicle): #moto
         self.moto = moto
         self.price = price
 
+
+#Function witch will randomly returns 1 or 0. if 1 a place will be filled with some one of clesses, else: empty
 def randField():
     isFree = random.getrandbits(1)
     return isFree
 
-def createRandomUser(): #function for emulate ParkingCostumers
-    # Create random datas about costomer
+#function for emulate ParkingCustumers
+def createRandomUser():
+    # Create random datas about customer
     plts = ["11-aa-11", "22-aa-22", "33-aa-33", "44-aa-44", "55-aa-55"]
     surnames = ["Isac", "Iriciuc", "Cimpoies"]
     names = ["Aaron", "Emily", "Boris", "Natasha"]
@@ -152,54 +156,45 @@ def createRandomUser(): #function for emulate ParkingCostumers
     exDate = random.randint(50, 250)
     return name,id,plt,entDate,exDate
 
-floor = [] #5 floors
+#Function has been created for field all places if function randField returns 1
+def addUsersToList(times, floor = [], freeForFloor = []):
+    for plc in range(times):
+        a = randField()
+        if a == 1:
+            customer = Vehicle(createRandomUser()[0], createRandomUser()[1], createRandomUser()[2], createRandomUser()[3], createRandomUser()[4])
+            places.append(customer)
+        else:
+            places.append(0)
+            if times == 25:
+                freePlaces[0] += 1 #+1 for empty place Car
+            elif times == 10:
+                freePlaces[1] += 1 #+1 for empty place Moto
+            elif times == 3:
+                freePlaces[2] += 1 #+1 for empty place Vip
+            elif times == 2:
+                freePlaces[3] += 1 #+1 for empty place HandiCap
 
+
+floor = [] #5 floors
 freeForFloor = [] #conter free places[simpleCar, Moto, Vip, HandiCap]
 
-for flr in range(5):
+for flr in range(5):#fueld 5 floors on parking
+    places = []  # 40 places for a floor 25-Cars, 10-Moto, 3-Vip, 2-HandiCap
     freePlaces = [0, 0, 0, 0]  # conter free places[simpleCar, Moto, Vip, HandiCap]
-    for plc in range(25): #Appending carrs
-        places = []  # 40 places for a flor 25simpleCars, 10Moto, 3Vip, 2HandiCap
-        a = randField()
-        if a == 1:
-            castomer = Vehicle(createRandomUser()[0], createRandomUser()[1], createRandomUser()[2],createRandomUser()[3], createRandomUser()[4])
-            places.append(castomer)
-        else:
-            places.append(0)
-            freePlaces[0] += 1
-
-    for plc in range(10):#Appending Moto
-        a = randField()
-        if a == 1:
-            costomer = MotoCostomers(createRandomUser()[0], createRandomUser()[1], createRandomUser()[2],createRandomUser()[3], createRandomUser()[4])
-            places.append(costomer)
-        else:
-            places.append(0)
-            freePlaces[1] += 1
-    for plc in range(3):#Appending Vip
-        a = randField()
-        if a == 1:
-            costomer = VipCostomers(createRandomUser()[0], createRandomUser()[1], createRandomUser()[2],createRandomUser()[3], createRandomUser()[4])
-            places.append(costomer)
-        else:
-            places.append(0)
-            freePlaces[2] += 1
-    for plc in range(2):  # Appending HandiCap
-        a = randField()
-        if a == 1:
-            costomer = HandiCapCostomers(createRandomUser()[0], createRandomUser()[1], createRandomUser()[2],createRandomUser()[3], createRandomUser()[4])
-            places.append(costomer)
-        else:
-            places.append(0)
-            freePlaces[3] += 1
+    addUsersToList(25, floor, freeForFloor)#field Cars
+    addUsersToList(10, floor, freeForFloor)#field Moto
+    addUsersToList(3, floor, freeForFloor)#field Vip
+    addUsersToList(2, floor, freeForFloor)#field HandiCap
     floor.append(places)
     freeForFloor.append(freePlaces)
 
 print("Parking has been emulated!")
-for flr in floor:
-    for obj in flr:
+numberTotalVehicles = 0 #Count total number of Customers
+for flr in floor:#Check all Floors
+    for obj in flr:#Check all places on Floor
         if obj != 0:
-            print("{} TotalPrice:{:5.3}€".format(obj, obj.totalPrice()))
+            numberTotalVehicles += 1
+            print("{} {} TotalPrice:{:5.3}€".format(numberTotalVehicles,obj, obj.totalPrice())) #print CustomerInfo if place !Empty
 
 
 
