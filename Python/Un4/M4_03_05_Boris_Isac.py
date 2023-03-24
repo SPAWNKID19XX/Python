@@ -2,10 +2,13 @@
 elementos = [1, 5, -2]
 
 def agrigarUmaVez(val, lista = []):
-    if val in lista:
-        print('"Erro: impossível adicionar elementos duplicados =>', val)
-    else:
-        lista.append(val)
+    try:
+        if val in lista:
+            raise ValueError ('Error: impossível adicionar elementos duplicados =>', val)
+        else:
+            lista.append(val)
+    except:
+        print('EXCEPTION***Error: impossível adicionar elementos duplicados =>', val)
 
 agrigarUmaVez(10,elementos)
 agrigarUmaVez(-2, elementos)
