@@ -1,0 +1,13 @@
+'data' : 
+	{'author': [
+		{'firstName': 'Jorge', 'lastName': 'Martin', 'isAlive': 1}, 
+		{'firstName': 'Dan', 'lastName': 'Brawn', 'isAlive': 1}, 
+		{'firstName': 'Joanne', 'lastName': 'Rowling', 'isAlive': 1}]}, 
+ 	{'book': [
+		{'isbn': '0-553-10354-7', 'title': 'A game of throns', 'publisher': 'Bantam Spectra', 'publYear': 1996}, 
+		{'isbn': '9781408855652', 'title': 'Harry Potter', 'publisher': 'Bloomsbury', 'publYear': 1997}, 
+		{'isbn': '0-385-50420-9', 'title': 'The Da Vinci Code', 'publisher': 'АСТ', 'publYear': 2003}]}, 
+	{'user': [
+		{'firstName': 'Jorge', 'lastName': 'Martin', 'userId': 125}, 	
+		{'firstName': 'Dan', 'lastName': 'Brawn', 'userId': 174}, 
+		{'firstName': 'Joanne', 'lastName': 'Rowling', 'userId': 154}]}]
