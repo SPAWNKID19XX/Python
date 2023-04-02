@@ -12,7 +12,7 @@ fileElenco = open('05_05_imdb_elenco.csv')
 fileTitulos = open('05_05_imdb_titulos.csv')
 dFtitle = pandas.read_csv(fileTitulos)
 dFElenco = pandas.read_csv(fileElenco)
-
+'''
 #first five regists TITULO
 print('File 05_05_imdb_titulos.csv,'.upper(), len(dFtitle), 'Regists'.upper())
 print(dFtitle.head())
@@ -29,12 +29,14 @@ print("\nDracula Films:".upper(), len(draculaFilms))
 pandas.set_option('display.max_rows', None)
 print(draculaFilms)
 pandas.set_option('display.max_row',10)
+'''
+
 
 print('\n5 Titolos mais comiuns'.upper()) #no csv file que eu criei funciona, aqui nao. pode me dar alguma dica
-repeatRegistr = pandas.pivot_table(dFtitle,index=['title', 'year'], aggfunc='size')
-print(repeatRegistr.nlargest(5))
+repeatRegistr = pandas.pivot_table(dFElenco,index=['title', 'year'], aggfunc='size')
+print(repeatRegistr.nlargest(10))
 
-
+'''
 romeoAndJulieta =  dFtitle[dFtitle['title'].str.contains('Romeo and Juliet')]
 fRAndJ = romeoAndJulieta.nsmallest(1, 'year')
 print('\nRomeo And Juliete, first film')
@@ -100,5 +102,4 @@ print(charltonHeston.sort_values(by='year', ascending=False))
 actor = dFElenco[dFElenco['type'] == 'actor']
 actriz = len(dFElenco)-len(actor)
 print('actor:',len(actor), 'actriz:',actriz)
-
-
+'''

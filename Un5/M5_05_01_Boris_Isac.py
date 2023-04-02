@@ -1,3 +1,4 @@
+import numpy
 import numpy as np
 
 print(np.__version__)
@@ -13,11 +14,14 @@ print('Matrix:\n',matrix)
 matrixIdentity = np.identity(6)
 print('Identidade:\n',matrixIdentity)
 
-cubo = np.random.random([3,3,3])
-print(cubo)
+cubo1 = np.random.random([3,3,3])
+cubo2 = np.random.random([3,3,3])
 
 vetor = np.arange(3,12)
 b = np.reshape(vetor, [3,3])
 print(b)
 
-print (b==matrix)
+print (cubo1==cubo2)#1 comparison of each of elements from both matrix
+comparison = numpy.array_equal(cubo1,cubo2)#2 comparison of matrix
+print(comparison)
+
