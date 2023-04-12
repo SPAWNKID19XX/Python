@@ -33,8 +33,11 @@ pandas.set_option('display.max_row',10)
 
 
 print('\n5 Titolos mais comiuns'.upper()) #no csv file que eu criei funciona, aqui nao. pode me dar alguma dica
-repeatRegistr = pandas.pivot_table(dFElenco,index=['title', 'year'], aggfunc='size')
-print(repeatRegistr.nlargest(10))
+repeatList = dFtitle['title'].value_counts()
+print(repeatList.head(10))
+
+
+
 
 '''
 romeoAndJulieta =  dFtitle[dFtitle['title'].str.contains('Romeo and Juliet')]
